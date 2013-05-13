@@ -8,9 +8,9 @@ if [ "$(ps ax | grep firefox | grep -vc grep)" -lt 1 ]; then
 	/dat/player/bin/player start
 elif [ "$(ps ax | grep mplayer | grep -vc grep)" -lt 1 ]; then
 	/dat/player/bin/player restart
-elif [ "$(ps ax | grep gnome-mplayer | grep -vc grep)" -lt 2 ]; then
+elif [ "$(ps ax | grep gnome-mplayer | grep -vc grep)" -lt 1 ]; then
 	sleep 5
-	if [ "$(ps ax | grep gnome-mplayer | grep -vc grep)" -lt 2 ]; then
+	if [ "$(ps ax | grep gnome-mplayer | grep -vc grep)" -lt 1 ]; then
 		/dat/player/bin/player restart
 	fi
 fi
