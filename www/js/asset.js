@@ -1,14 +1,11 @@
-/**
- *
- * @interface
- */
+
 function Asset() {}
 Asset.prototype.render = function () {};
 
 /**
  *
- * @param {String}
- * @implements {Asset}
+ * @param src string
+ * @extends {Asset}
  * @constructor
  */
 function VideoAsset(src) {
@@ -34,6 +31,7 @@ VideoAsset.prototype = new Asset;
 
 /**
  * @extends {VideoAsset}
+ * @param src string
  * @constructor
  */
 function QuicktimeVideoAsset (src) {

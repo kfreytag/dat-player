@@ -63,7 +63,7 @@ Layout.prototype.show = function () {};
 Layout.prototype.hide = function () {};
 
 /**
- * A Fullscreen Layout
+ * A full screen Layout
  * @constructor
  * @param zone {Zone}
  * @extends {Layout}
@@ -89,7 +89,6 @@ function FullscreenLayout (zone) {
 			this.zone.setLayout(this);
 			this.zone.render();
 		}
-		this.hide();
 	};
 
 	this.destroy = function () {

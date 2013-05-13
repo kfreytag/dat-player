@@ -7,6 +7,19 @@ Canvas = {};
 Canvas.container = undefined;
 
 /**
+ * @private
+ * @type {Boolean}
+ */
+Canvas.rendered = false;
+
+/**
+ * @public
+ */
+Canvas.isRendered = function () {
+	return this.rendered;
+};
+
+/**
  * @public
  */
 Canvas.render = function () {
@@ -15,6 +28,7 @@ Canvas.render = function () {
 	$(this.container).attr('id', this.id).width(Screen.getWidth()).height(Screen.getHeight());
 	$(this.container).css('position', 'absolute').css('top', '0px').css('left', '0px');
 	$('body').prepend(this.container);
+	this.rendered = true;
 };
 
 /**

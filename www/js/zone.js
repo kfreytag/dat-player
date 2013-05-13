@@ -1,6 +1,6 @@
 /**
  *
- * @oaram asset {VideoAsset}
+ * @param asset {VideoAsset}
  * @constructor
  */
 function Zone(asset) {
@@ -191,21 +191,12 @@ function QuicktimeVideoZone (asset) {
 		if (!this.isRendered()) {
 			this.container = $('<div/>').attr('id', this.getId());
 			$('#' + this.getLayout().getId()).append(this.container);
-			if (Player.preBufferVideo) {
-				$(this.container).html('<embed type="video/quicktime" onMediaComplete="Player.playNextItem()" nopauseonhide="true" autoplay="0" id="gecko_' + this.id + '" width="' + this.getWidth() + '" height="' + this.getHeight() + '" showcontrols="false"></embed>');
-				var mediaPlayer = $(this.container).find('embed');
-				var zone = this;
-				mediaPlayer.each(function () {
-					this.Open(zone.asset.getSrc());
-				});
-			}
 			this.rendered = true;
 		}
 	};
 
 	this.destroy = function () {
 		if (this.isRendered()) {
-			$(this.container).html('');
 			$(this.container).remove();
 			this.container = undefined;
 		}
@@ -216,27 +207,7 @@ function QuicktimeVideoZone (asset) {
 	 * @public
 	 **/
 	this.play = function () {
-		this.render();
-		/*
-		 * Bogus gecko-mediaplayer event handling
-		 * throws an onMediaComplete *before* the
-		 * media plays.
-		if (Player.preBufferVideo) {
-			var mediaPlayer = $(this.container).find('embed');
-			mediaPlayer.each(function() {
-				var thisPlayer = this;
-				if (!Player.preBufferVideo) {
-					setTimeout( function() {
-						thisPlayer.Play();
-					}, 1000);
-				} else {
-					this.Play();
-				}
-			});
-		} else {
-		 */
-		$(this.container).html('<embed type="video/quicktime" src="' + this.asset.getSrc() + '" onMediaComplete="Player.playNextItem()" id="gecko_' + this.getId() + '" width="' + this.getWidth() + '" height="' + this.getHeight() + '" showcontrols="false"></embed>');
-//		}
+		$(this.container).html('<embed type="video/quicktime" src="' + this.asset.getSrc() + '" onMediaComplete="Player.playNextItem()" nocache="1" id="gecko_' + this.getId() + '" width="' + this.getWidth() + '" height="' + this.getHeight() + '" showcontrols="false"></embed>');
 	};
 }
 
