@@ -1,0 +1,9 @@
+*
+{
+    -GtkWindow-resize-grip-default: false;
+}
+
+GmtkMediaPlayer
+{
+	background-color: #000000;
+}

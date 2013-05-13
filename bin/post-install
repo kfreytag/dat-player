@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+sudo ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+sudo ssh-keygen -t rsa1 -f /etc/ssh/ssh_host_key
+

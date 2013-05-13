@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -e /tmp/dat_deploying.lock ]; then
+	exit 1
+fi
+
+if [ "$(ps ax | grep 'autossh' | grep -vc grep)" -lt 1 ]; then
+	/dat/player/bin/tunnel start
+fi

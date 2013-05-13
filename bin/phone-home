@@ -1,0 +1,69 @@
+#!/bin/bash
+
+if [ -e /tmp/dat_deploying.lock ]; then
+	exit 1
+fi
+
+if [ ! -f /dat/player/localconfig/player.conf ]; then
+	echo 'ERROR : Missing conf file at /dat/player/localconfig/player.conf'
+	exit 1
+fi
+
+source /dat/player/localconfig/player.conf
+
+if [ -z "$host" -o -z "$id" ]; then
+	echo 'ERROR : Missing host or playerid in player.conf file'
+	exit 1
+fi
+
+mac=''
+hwLine=`/sbin/ifconfig -a | grep HWaddr`
+if [[ $hwLine =~ HWaddr\ ([^\ ]*) ]]; then
+	mac=${BASH_REMATCH[1]}
+fi
+
+version=`readlink -f /dat/releases/player/current | sed -e 's/\/dat\/releases\/player\///g'`
+
+ip=`/sbin/ifconfig -a | perl -ne 'chomp and print' | sed -r -e "s/eth.*addr:([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}).*lo.*/\1/g"`
+
+curlurl="http://$host/uptime.ping?type=ping&version=$version&id=$id&mac=${mac/ /}&ip=$ip"
+commands=`curl "$curlurl" | grep \<command\> | sed -e 's/<command>//g' | sed -e 's/<\/command>//g' | sed -e 's/	//g' | sed -e 's/ //g'`
+
+for x in $commands
+do
+    echo `date +"%s"` > /dat/player/commands/"$x".semaphor
+done
+
+#
+# Deal with Commands
+#
+
+#
+# Restart Tunnel
+#
+
+if [ -f /dat/player/commands/tunnel.restart.semaphor ]; then
+	/dat/player/bin/tunnel restart
+	if [ ! "$(ps ax | grep 'autossh' | grep -vc grep)" -lt 1 ]; then
+		rm /dat/player/commands/tunnel.restart.semaphor
+	fi
+fi
+
+#
+# Upgrade Software
+#
+
+if [ -f /dat/player/commands/player.upgrade.semaphor ]; then
+	/dat/player/bin/upgrade
+	rm /dat/player/commands/player.upgrade.semaphor
+fi
+
+#
+# Reboot Player
+#
+
+if [ -f /dat/player/commands/player.reboot.semaphor ]; then
+	rm /dat/player/commands/player.reboot.semaphor
+	sudo /sbin/reboot
+fi
+

@@ -1,0 +1,102 @@
+# translation of tr.po to Turkish
+# Turkish translation of GNOME MPlayer.
+# This file is distributed under the same license as the gmtk package.
+# Copyright (C) Kevin DeKorte 2006-2008 <kdekorte@gmail.com>
+# Onur Küçük <onur@pardus.org.tr>, 2008, 2009, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: tr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-08 06:47-0700\n"
+"PO-Revision-Date: 2012-03-26 01:10+0300\n"
+"Last-Translator: Onur Küçük <onur@ozguryazilim.com.tr>\n"
+"Language-Team: Turkish <turkce@pardus.org.tr>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=1;\n"
+"X-Launchpad-Export-Date: 2011-06-09 16:08+0000\n"
+"X-Generator: Lokalize 1.2\n"
+
+#: ../src/gm_audio.c:78 ../src/gm_audio.c:252
+#: ../src/gmtk_output_combo_box.c:148
+msgid "Default"
+msgstr "Öntanımlı"
+
+#: ../src/gmtk_media_player.c:554 ../src/gmtk_media_player.c:891
+msgid "Frame Dropping"
+msgstr "Kare Atlaması"
+
+#: ../src/gmtk_media_player.c:568
+msgid "Deinterlace"
+msgstr "Satır Birleştirme"
+
+#: ../src/gmtk_media_player.c:791
+msgid "Loading..."
+msgstr "Yükleniyor..."
+
+#: ../src/gmtk_media_player.c:918
+msgid "Subtitles Visible"
+msgstr "Altyazılar Görünür"
+
+#: ../src/gmtk_media_player.c:921
+msgid "Subtitles Hidden"
+msgstr "Altyazılar Gizli"
+
+#: ../src/gmtk_media_player.c:2671
+#, c-format
+msgid "Failed to open %s"
+msgstr "Açma başarısız %s"
+
+#: ../src/gmtk_media_player.c:2708
+msgid "Compressed SWF format not supported"
+msgstr "Sıkıştırılmış SWF desteklenmiyor"
+
+#: ../src/gmtk_media_player.c:2736
+msgid "GNOME MPlayer Error"
+msgstr "GNOME MPlayer Hatası"
+
+#: ../src/gmtk_media_player.c:2799
+#, c-format
+msgid "Cache fill: %2.2f%%"
+msgstr "Önbellek: %2.2f%%"
+
+#: ../src/gmtk_media_player.c:2945 ../src/gmtk_media_player.c:2946
+#: ../src/gmtk_media_player.c:2995 ../src/gmtk_media_player.c:3027
+#: ../src/gmtk_media_player.c:3028 ../src/gmtk_media_player.c:3060
+#: ../src/gmtk_media_player.c:3092
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: ../src/gmtk_media_player.c:3006
+#, c-format
+msgid "External Subtitle #%i"
+msgstr "Harici Altyazı #%i"
+
+#: ../src/gmtk_media_player.c:3199
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "Ekran görüntüsü '%s' olarak kaydedildi"
+
+#: ../src/gmtk_media_player.c:3202 ../src/gmtk_media_player.c:3298
+msgid "GNOME MPlayer Notification"
+msgstr "GNOME MPlayer Uyarısı"
+
+#: ../src/gmtk_media_player.c:3295
+msgid "MPlayer should be Upgraded to a Newer Version"
+msgstr "MPlayer daha yeni bir sürüme güncellenmeli"
+
+#: ../src/gmtk_media_player.c:3541
+msgid "You might want to consider upgrading mplayer to a newer version\n"
+msgstr "MPlayer'ı daha yeni bir sürüme güncellemeyi düşünmelisiniz\n"
+
+#: ../src/gmtk_media_tracker.c:97 ../src/gmtk_media_tracker.c:101
+#: ../src/gmtk_media_tracker.c:208
+msgid "No Information"
+msgstr "Bilgi Yok"
+
+#: ../src/gmtk_audio_meter.c:212
+msgid "No Data"
+msgstr "Veri Yok"
+

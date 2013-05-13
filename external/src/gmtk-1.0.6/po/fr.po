@@ -1,0 +1,103 @@
+# French translation of GNOME MPlayer Toolkit.
+# Copyright (C) 2002-2011 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gmtk package.
+#
+# Kevin DeKorte <kdekorte@gmail.com>, 2006-2011
+# Alexandre Bedot <alexandre.bedot@free.fr>, 2007-2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gmtk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-08 06:47-0700\n"
+"PO-Revision-Date: 2011-08-03 14:20+0200\n"
+"Last-Translator: Alexandre Bedot <alexandre.bedot@free.fr>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#: ../src/gm_audio.c:78 ../src/gm_audio.c:252
+#: ../src/gmtk_output_combo_box.c:148
+msgid "Default"
+msgstr "Système sonore par défaut"
+
+#: ../src/gmtk_media_player.c:554 ../src/gmtk_media_player.c:891
+msgid "Frame Dropping"
+msgstr "Saut d'images"
+
+#: ../src/gmtk_media_player.c:568
+msgid "Deinterlace"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:791
+msgid "Loading..."
+msgstr "Chargement en cours..."
+
+#: ../src/gmtk_media_player.c:918
+msgid "Subtitles Visible"
+msgstr "Sous-titres visibles"
+
+#: ../src/gmtk_media_player.c:921
+msgid "Subtitles Hidden"
+msgstr "Sous-titres cachés"
+
+#: ../src/gmtk_media_player.c:2671
+#, c-format
+msgid "Failed to open %s"
+msgstr "Échec à l'ouverture de %s"
+
+#: ../src/gmtk_media_player.c:2708
+msgid "Compressed SWF format not supported"
+msgstr "Le format SWF compressé n'est pas pris en charge."
+
+#: ../src/gmtk_media_player.c:2736
+msgid "GNOME MPlayer Error"
+msgstr "Erreur de GNOME MPlayer"
+
+#: ../src/gmtk_media_player.c:2799
+#, c-format
+msgid "Cache fill: %2.2f%%"
+msgstr "Mise en mémoire tampon : %2.2f%%"
+
+#: ../src/gmtk_media_player.c:2945 ../src/gmtk_media_player.c:2946
+#: ../src/gmtk_media_player.c:2995 ../src/gmtk_media_player.c:3027
+#: ../src/gmtk_media_player.c:3028 ../src/gmtk_media_player.c:3060
+#: ../src/gmtk_media_player.c:3092
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../src/gmtk_media_player.c:3006
+#, c-format
+msgid "External Subtitle #%i"
+msgstr "Sous-titres externes #%i"
+
+#: ../src/gmtk_media_player.c:3199
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "Cliché sauvegardé en tant que « %s »"
+
+#: ../src/gmtk_media_player.c:3202 ../src/gmtk_media_player.c:3298
+msgid "GNOME MPlayer Notification"
+msgstr "Notification de GNOME MPlayer"
+
+#: ../src/gmtk_media_player.c:3295
+msgid "MPlayer should be Upgraded to a Newer Version"
+msgstr "MPlayer devrait être mis à jour pour une version récente."
+
+#: ../src/gmtk_media_player.c:3541
+msgid "You might want to consider upgrading mplayer to a newer version\n"
+msgstr ""
+"Peut être devriez vous considérer une mise à jour de mplayer pour une "
+"version plus récente.\n"
+
+#: ../src/gmtk_media_tracker.c:97 ../src/gmtk_media_tracker.c:101
+#: ../src/gmtk_media_tracker.c:208
+msgid "No Information"
+msgstr "Aucune information"
+
+#: ../src/gmtk_audio_meter.c:212
+msgid "No Data"
+msgstr ""

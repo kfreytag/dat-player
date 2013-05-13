@@ -1,0 +1,5 @@
+compiz
+firefox
+lighttpd
+php-cgi
+lightdm

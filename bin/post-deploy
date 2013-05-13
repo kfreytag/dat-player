@@ -1,0 +1,89 @@
+#!/bin/bash
+
+wd=`pwd`
+
+rm -rf ~/.config/autostart/*
+cp ${wd}/../config/user/.config/autostart/* ~/.config/autostart/
+rm -rf ~/.config/caffeine/whitelist.txt
+cp ${wd}/../config/user/.config/caffeine/* ~/.config/caffeine/
+
+rm -rf ~/.gtkrc-2.0
+cp ${wd}/../config/user/.gtkrc-2.0 ~/
+
+rm -rf ~/.config/gtk-3.0/gtk.css
+cp ${wd}/../config/user/.config/gtk-3.0/* ~/.config/gtk-3.0/gtk.css
+
+sudo chown -R root:root ${wd}/../config/etc/*
+sudo chmod 644 ${wd}/../config/etc/*
+sudo cp ${wd}/../config/etc/default/* /etc/default/
+sudo cp ${wd}/../config/etc/lightdm/* /etc/lightdm/
+sudo cp ${wd}/../config/etc/logrotate.d/* /etc/logrotate.d/
+
+
+#
+# Modify the Firefox config if necessary
+#
+
+#
+# Declare an associative array of preferences
+# to be set for Firefox
+#
+
+declare -A prefs
+prefs["\"app.update.auto\""]="false"
+prefs["\"app.update.enabled\""]="false"
+prefs["\"browser.offline-apps.notify\""]="false"
+prefs["\"browser.popups.showPopupBlocker\""]="false"
+prefs["\"browser.sessionstore.max_resumed_crashes\""]="0"
+prefs["\"browser.sessionstore.max_tabs_undo\""]="0"
+prefs["\"browser.sessionstore.max_windows_undo\""]="0"
+prefs["\"browser.sessionstore.resume_from_crash\""]="false"
+prefs["\"browser.startup.homepage\""]="\"http://localhost/\""
+prefs["\"browser.tabs.autoHide\""]="true"
+prefs["\"browser.tabs.warnOnClose\""]="false"
+prefs["\"browser.tabs.warnOnOpen\""]="false"
+prefs["\"browser.warnOnQuit\""]="false"
+prefs["\"dom.allow_scripts_to_close_windows\""]="true"
+prefs["\"dom.max_chrome_script_run_time\""]="60"
+prefs["\"dom.max_script_run_time\""]="60"
+prefs["\"extensions.update.autoUpdateDefault\""]="false"
+prefs["\"extensions.update.enabled\""]="false"
+prefs["\"layout.css.report_errors\""]="false"
+prefs["\"startup.homepage_override_url\""]="\"http://localhost/\""
+prefs["\"startup.homepage_welcome_url\""]="\"http://localhost/\""
+
+firefox_prefs=~/.mozilla/firefox/dat.default/prefs.js
+
+if [ -f ${firefox_prefs} ]; then
+	cp "$firefox_prefs" "$firefox_prefs".bak
+else
+	echo "It appears that Firefox has not been initialized."
+	exit
+fi
+
+echo "Firefox prefs.js settings"
+echo "-------------------------"
+
+##############################
+# Set pref values
+##############################
+
+for key in "${!prefs[@]}"
+do
+	value=${prefs[$key]}
+	echo "Checking for ${key} pref setting"
+	escapedkey=$(echo ${key} | sed -s "s/^\(\"\(.*\)\)\"\$/\\\\\\1\\\\\"/g")
+	escapedvalue=$(echo ${value} | sed -s "s/^\(\"\(.*\)\)\"\$/\\\\\\1\\\\\"/g")
+	if [ ! "$(grep $escapedkey $firefox_prefs | wc -l)" -lt 1 ]; then
+            pref_count=`grep "$escapedkey, $escapedvalue" $firefox_prefs | wc -l`
+            if [ $pref_count -lt 1 ]; then
+                    echo "  - It is not '${value}', replacing..."
+                    # replace existing setting
+                    sed -i -e 's/\(${key}, \)[^\\)]*\(.*\)$/\1${value}\2/' < ${firefox_prefs}
+            fi
+    else
+            echo "  - Setting is not present. Adding..."
+            echo "user_pref(${key}, ${value});" >> $firefox_prefs
+    fi
+
+done

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<gconf>
+<entry name="show_notification" mtime="" type="bool" value="false"/>
+<entry name="show_tray_icon" mtime="" type="bool" value="true"/>
+<entry name="act_for_flash" mtime="" type="bool" value="true"/>
+<entry name="act_for_ql" mtime="" type="bool" value="false"/>
+<entry name="autostart" mtime="" type="bool" value="true"/>
+</gconf>

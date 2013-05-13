@@ -1,0 +1,13 @@
+--- !digitaladtech.com/^configuration
+environment: eng
+player_id: 1
+paths:
+  log:  /dat/local/www/assets/
+  assets: /dat/local/www/assets/
+urls:
+  status: http://netops/player_command/update
+  commands: http://netops/ping
+ssh:
+  host:netops
+  user:kamran
+  

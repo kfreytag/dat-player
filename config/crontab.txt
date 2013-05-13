@@ -1,0 +1,18 @@
+#
+# Set the path so we know about gnome-mplayer
+#
+PATH = /bin:/usr/local/bin:/usr/bin:/dat/player/bin:/dat/bin
+#
+# Reboot Time
+#
+@reboot /dat/player/bin/vnc start
+@reboot /dat/player/bin/tunnel start
+@reboot /dat/player/bin/hide-mouse
+#
+# Scheduled Jobs
+#
+*/1 * * * * /dat/player/bin/monitor-tunnel
+*/1 * * * * /dat/player/bin/monitor-player
+*/1 * * * * /dat/player/bin/monitor-tunnel
+*/1 * * * * /dat/player/bin/monitor-vnc
+*/1 * * * * /dat/player/bin/monitor-web

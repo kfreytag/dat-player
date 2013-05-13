@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ ! -f /dat/local/config/player.conf ]; then
+	echo "[FAILED]"
+	echo "	(missing /dat/local/config/player.conf)"
+	exit 1
+fi
+
+source /dat/local/config/player.conf
+
+if [ -z "$port" -o -z "$host" -o -z "$user" ]; then
+	echo -n "[FAILED]"
+	echo "	(check config in /dat/local/config/player.conf)"
+	exit 1
+fi
+
+DISPLAY=:0 import -window root -resize 400 -quality 20 -filter Gaussian /tmp/screenshot.jpeg
+
+scp -q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/screenshot.jpeg $user@$host:/dat/local/www/assets/screenshots/$port.jpeg
+rm /tmp/screenshot.jpeg
+

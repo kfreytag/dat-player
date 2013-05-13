@@ -1,0 +1,120 @@
+#!/bin/bash
+
+AUTOSSH_POLL=600
+AUTOSSH_PORT=20000
+AUTOSSH_GATETIME=30
+AUTOSSH_LOGFILE=/dat/local/logs/autossh.log
+AUTOSSH_LOGLEVEL=1
+AUTOSSH_DEBUG=no
+AUTOSSH_PATH=/usr/bin/ssh
+export AUTOSSH_POLL AUTOSSH_LOGFILE AUTOSSH_DEBUG AUTOSSH_PATH AUTOSSH_GATETIME
+
+echo -n 'Loading configuration file		'
+
+if [ ! -f /dat/local/config/player.conf ]; then
+	echo "[FAILED]"
+	echo "	(missing /dat/local/config/player.conf)"
+	exit 1
+fi
+
+source /dat/local/config/player.conf
+
+if [ -z "$port" -o -z "$host" ]; then
+	echo -n "[FAILED]"
+	echo "	(check config in /dat/local/config/player.conf)"
+	exit 1
+fi
+
+echo '    [OK]'
+
+if [ ! -f /dat/local/logs/tunnel.log ]; then
+	echo -n 'Creating logfile			'
+	touch /dat/local/logs/tunnel.log
+	if [ ! -f /dat/local/logs/tunnel.log ]; then
+		echo -n "[FAILED]"
+		echo "	(failed to create logfile)"
+		exit 1
+	else
+		echo "    [OK]"
+	fi
+fi
+
+function start () {
+
+	echo -n "Starting service : tunnel		"
+
+	sshpid=`ps aux | grep "autossh" | grep -v grep | awk '{print $2}'`
+
+	sshcommand="/usr/bin/autossh -f -M 2${port} -2 -N -R $port:localhost:22 $user@$host -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
+	if [ ! -z "$sshpid" ]; then
+		echo -n "[FAILED]"
+		echo "	(tunnel already running.)"
+	else
+		if [[ "$USER" == "root" ]]
+		then
+			su - administrator -c "$sshcommand >> /dev/null &"
+			echo "    [OK]"
+		else
+    		$sshcommand >> /dev/null &
+    		echo "    [OK]"
+ 		fi
+	fi
+
+}
+
+function stop () {
+
+	echo -n "Stopping service : tunnel		"
+
+	sshpid=`ps aux | grep "autossh" | grep -v grep | awk '{print $2}'`
+
+	if [ -z "$sshpid" ]; then
+		echo -n "[FAILED]"
+		echo "	(tunnel not running.)"
+	else
+
+		kill $sshpid
+
+		sleep 3
+
+		sshpid=`ps aux | grep "autossh" | grep -v grep | awk '{print $2}'`
+
+		if [ ! -z "$sshpid" ]; then
+			kill -9 $sshpid
+			sleep 3
+			sshpid=`ps aux | grep "autossh" | grep -v grep | awk '{print $2}'`
+			if [ -z "$sshpid" ]; then
+				echo "    [OK]"
+			else
+				echo -n "[FAILED]"
+				echo "	(could not kill tunnel.)"
+				exit 1
+			fi
+		else
+			echo "    [OK]"
+		fi
+
+	fi
+}
+
+function restart () {
+	stop
+	start
+}
+
+case "${1:-''}" in
+  'start')
+                start
+        ;;
+  'stop')
+                stop
+        ;;
+  'restart')
+                restart
+        ;;
+  *)
+        echo "Usage: $0 start|stop|restart"
+        exit 1
+        ;;
+esac

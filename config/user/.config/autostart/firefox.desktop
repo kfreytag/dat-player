@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sleep 10 && /dat/player/bin/hide-mouse && /dat/player/bin/player start
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Union
+Name=Union
+Comment[en_US]=Player in Firefox
+Comment=Player in Firefox

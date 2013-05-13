@@ -1,0 +1,65 @@
+Name:           gmtk           
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        Library of common functions and widgets for gnome-mplayer and gecko-mediaplayer 
+
+License:        GPLv2+
+URL:            http://code.google.com/p/%{name}/ 
+Source0:        http://code.google.com/p/%{name}/files/%{name}-%{version}.tar.gz 
+
+BuildRequires:  alsa-lib-devel
+BuildRequires:  gettext
+%if 0%{?fedora} >= 15
+BuildRequires:  gtk3-devel
+%else
+BuildRequires:  gtk2-devel
+%endif
+BuildRequires:  intltool
+BuildRequires:  pulseaudio-libs-devel
+Requires:       mplayer
+
+%description
+Library of common functions and widgets for gnome-mplayer and gecko-mediaplayer
+
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name} = %{version}-%{release}
+
+%description    devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
+
+
+%prep
+%setup -q
+
+
+%build
+%configure --disable-static
+make %{?_smp_mflags}
+
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
+find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+%find_lang %{name}
+
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+
+%files -f %{name}.lang
+%{_docdir}/%{name}
+%{_libdir}/*.so.*
+
+%files devel
+%doc
+%{_includedir}/*
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
+
+
+%changelog

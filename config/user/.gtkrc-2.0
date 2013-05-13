@@ -1,0 +1,14 @@
+style "default-style"
+{
+  GtkWindow::resize-grip-height = 0
+  GtkWindow::resize-grip-width = 0
+}
+
+style "black-background"
+{
+  bg[NORMAL] = "#000000"
+}
+
+class "GtkWidget" style "default-style"
+
+class "*" style "black-background"

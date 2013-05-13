@@ -1,0 +1,44 @@
+#!/bin/bash
+
+RELEASES_DIRECTORY='/dat/releases/player/'
+CURRENT_RELEASE_DIRECTORY='/dat/releases/player/current'
+SCRIPT_DIRECTORY='/dat/player/bin'
+
+
+if [ ! -f /dat/local/config/player.conf ]; then
+	echo "ERROR : Missing /dat/local/config/player.conf"
+	exit 1
+fi
+
+source /dat/local/config/player.conf
+
+if [ -z "$user" -o -z "$host" ]; then
+	echo "ERROR : Check configuration in /dat/local/config/player.conf"
+fi
+
+scp "$user"@"$host":/dat/releases/player/current.tgz "$RELEASES_DIRECTORY"/
+
+if [ -f "$RELEASES_DIRECTORY"/current.tgz ]; then
+	echo "Expanding latest release"
+	cd "$RELEASES_DIRECTORY"
+	tar -xf latest.tgz
+	rm latest.tgz
+	latest_release=''
+	latest_release="$(find /dat/releases/player/*_* -maxdepth 0 -type d | sort -n | tail -1)"
+   	echo "Latest release is $latest_release"
+
+	#
+	# Create symlink to latest release
+	#
+
+	echo "Symlinking current releases directory to latest release"
+	rm -rf "$CURRENT_RELEASE_DIRECTORY"
+	ln -s "$latest_release" "$CURRENT_RELEASE_DIRECTORY"
+	chmod -R u+x "$SCRIPT_DIRECTORY"/*
+fi
+
+#
+# Restart Firefox
+#
+
+player restart

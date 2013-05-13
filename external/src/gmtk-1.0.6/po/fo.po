@@ -1,0 +1,102 @@
+# Faroese translation for gmtk
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the gmtk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gmtk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-08 06:47-0700\n"
+"PO-Revision-Date: 2011-03-03 18:09+0000\n"
+"Last-Translator: Kevin DeKorte <kdekorte@gmail.com>\n"
+"Language-Team: Faroese <fo@li.org>\n"
+"Language: fo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2011-06-09 16:08+0000\n"
+"X-Generator: Launchpad (build 13175)\n"
+
+#: ../src/gm_audio.c:78 ../src/gm_audio.c:252
+#: ../src/gmtk_output_combo_box.c:148
+msgid "Default"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:554 ../src/gmtk_media_player.c:891
+msgid "Frame Dropping"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:568
+msgid "Deinterlace"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:791
+msgid "Loading..."
+msgstr ""
+
+#: ../src/gmtk_media_player.c:918
+msgid "Subtitles Visible"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:921
+msgid "Subtitles Hidden"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:2671
+#, c-format
+msgid "Failed to open %s"
+msgstr "Kundi ikki lata upp %s"
+
+#: ../src/gmtk_media_player.c:2708
+msgid "Compressed SWF format not supported"
+msgstr "Stappa SWF-snið er ikki stuðla"
+
+#: ../src/gmtk_media_player.c:2736
+msgid "GNOME MPlayer Error"
+msgstr "GNOME MPlayer villa"
+
+#: ../src/gmtk_media_player.c:2799
+#, c-format
+msgid "Cache fill: %2.2f%%"
+msgstr "Kova fylli: %2.2f%%"
+
+#: ../src/gmtk_media_player.c:2945 ../src/gmtk_media_player.c:2946
+#: ../src/gmtk_media_player.c:2995 ../src/gmtk_media_player.c:3027
+#: ../src/gmtk_media_player.c:3028 ../src/gmtk_media_player.c:3060
+#: ../src/gmtk_media_player.c:3092
+msgid "Unknown"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:3006
+#, c-format
+msgid "External Subtitle #%i"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:3199
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "Skíggjamynd goymd til '%s'"
+
+#: ../src/gmtk_media_player.c:3202 ../src/gmtk_media_player.c:3298
+#, fuzzy
+msgid "GNOME MPlayer Notification"
+msgstr "GNOME MPlayer villa"
+
+#: ../src/gmtk_media_player.c:3295
+msgid "MPlayer should be Upgraded to a Newer Version"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:3541
+msgid "You might want to consider upgrading mplayer to a newer version\n"
+msgstr ""
+
+#: ../src/gmtk_media_tracker.c:97 ../src/gmtk_media_tracker.c:101
+#: ../src/gmtk_media_tracker.c:208
+msgid "No Information"
+msgstr "Eingin upplýsing"
+
+#: ../src/gmtk_audio_meter.c:212
+msgid "No Data"
+msgstr ""

@@ -1,0 +1,101 @@
+# Korean translation of gmtk.
+# Copyright (C) 2007-2011 Kevin DeKorte <kdekorte@gmail.com>
+# This file is distributed under the same license as the gmtk package.
+# Byeongsik Jeon <bsjeon@hanmail.net>, 2007-2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gmtk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-08 06:47-0700\n"
+"PO-Revision-Date: 2011-02-23 07:39+0000\n"
+"Last-Translator: Byeongsik Jeon <Unknown>\n"
+"Language-Team: Hangul <hangul-hackers@lists.kldp.net>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2011-06-09 16:08+0000\n"
+"X-Generator: Launchpad (build 13175)\n"
+
+#: ../src/gm_audio.c:78 ../src/gm_audio.c:252
+#: ../src/gmtk_output_combo_box.c:148
+msgid "Default"
+msgstr "Default"
+
+#: ../src/gmtk_media_player.c:554 ../src/gmtk_media_player.c:891
+msgid "Frame Dropping"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:568
+msgid "Deinterlace"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:791
+msgid "Loading..."
+msgstr ""
+
+#: ../src/gmtk_media_player.c:918
+msgid "Subtitles Visible"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:921
+msgid "Subtitles Hidden"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:2671
+#, c-format
+msgid "Failed to open %s"
+msgstr "%s을(를) 여는 데 실패했습니다."
+
+#: ../src/gmtk_media_player.c:2708
+msgid "Compressed SWF format not supported"
+msgstr "압축된 SWF 포맷 지원하지 않음"
+
+#: ../src/gmtk_media_player.c:2736
+msgid "GNOME MPlayer Error"
+msgstr "GNOME Mplayer 오류"
+
+#: ../src/gmtk_media_player.c:2799
+#, c-format
+msgid "Cache fill: %2.2f%%"
+msgstr "캐쉬 채우기: %2.2f%%"
+
+#: ../src/gmtk_media_player.c:2945 ../src/gmtk_media_player.c:2946
+#: ../src/gmtk_media_player.c:2995 ../src/gmtk_media_player.c:3027
+#: ../src/gmtk_media_player.c:3028 ../src/gmtk_media_player.c:3060
+#: ../src/gmtk_media_player.c:3092
+msgid "Unknown"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:3006
+#, c-format
+msgid "External Subtitle #%i"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:3199
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "스크린샷이 '%s' 파일로 저장되었습니다."
+
+#: ../src/gmtk_media_player.c:3202 ../src/gmtk_media_player.c:3298
+msgid "GNOME MPlayer Notification"
+msgstr "GNOME Mplayer 알림"
+
+#: ../src/gmtk_media_player.c:3295
+msgid "MPlayer should be Upgraded to a Newer Version"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:3541
+msgid "You might want to consider upgrading mplayer to a newer version\n"
+msgstr ""
+
+#: ../src/gmtk_media_tracker.c:97 ../src/gmtk_media_tracker.c:101
+#: ../src/gmtk_media_tracker.c:208
+msgid "No Information"
+msgstr "정보 없음"
+
+#: ../src/gmtk_audio_meter.c:212
+msgid "No Data"
+msgstr ""

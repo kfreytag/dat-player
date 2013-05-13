@@ -1,0 +1,6 @@
+#!/bin/bash
+
+width=`DISPLAY=:0 xdpyinfo  | grep dimensions | sed -e "s/^ *//;s/ *$//;s/ \{1,\}/ /g" | cut -f 2 -d ' ' | cut -f 1 -d 'x'`
+height=`DISPLAY=:0 xdpyinfo  | grep dimensions | sed -e "s/^ *//;s/ *$//;s/ \{1,\}/ /g" | cut -f 2 -d ' ' | cut -f 2 -d 'x'`
+
+DISPLAY=:0 xdotool mousemove ${width} ${height}

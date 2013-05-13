@@ -1,0 +1,13 @@
+#!/bin/bash
+
+rsyncpid=`ps aux | grep "rsync" | grep -v grep | awk '{print $2}'`
+
+assets_command="/usr/bin/php /dat/player/bin/fetch_assets.php"
+
+if [ -z "$rsyncpid" ]; then
+	echo "(Rsync already running.)"
+else
+	$assets_command
+fi
+
+

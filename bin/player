@@ -1,0 +1,130 @@
+#!/bin/bash
+
+function start () {
+
+	echo -n "Starting service : player		"
+
+	playerpid=`ps aux | grep "firefox" | grep -v grep | awk '{print $2}'`
+
+	movemousecommand="/dat/player/bin/hide-mouse"
+	playercommand="/usr/bin/firefox -fullscreen http://localhost"
+
+	if [ ! -f /dat/local/logs/firefox.log ]; then
+		echo -n 'Creating logfile			'
+		touch /dat/local/logs/firefox.log
+		if [ ! -f /dat/local/logs/firefox.log ]; then
+			echo -n "[FAILED]"
+			echo "	(failed to create logfile)"
+			exit 1
+		else
+			echo "    [OK]"
+		fi
+	fi
+
+	if [ ! -z "$playerpid" ]; then
+		echo -n "[FAILED]"
+		echo "	(player already running.)"
+	else
+		if [[ "$USER" == "root" ]]
+		then
+			DISPLAY=:0 su - dat -c "$movemousecommand"
+			DISPLAY=:0 su - dat -c "$playercommand" 2>&1 >> /dat/local/logs/firefox.log &
+			echo "    [OK]"
+		else
+			DISPLAY=:0 $movemousecommand
+    		DISPLAY=:0 $playercommand 2>&1 >> /dat/local/logs/firefox.log &
+    		echo "    [OK]"
+ 		fi
+	fi
+
+}
+
+function stop () {
+
+	echo -n "Stopping service : player		"
+
+	playerpid=`ps aux | grep "firefox" | grep -v grep | awk '{print $2}'`
+
+	if [ -z "$playerpid" ]; then
+		echo -n "[FAILED]"
+		echo "	(player not running.)"
+	else
+
+		kill $playerpid
+
+		sleep 1
+
+		playerpid=`ps aux | grep "firefox" | grep -v grep | awk '{print $2}'`
+
+		if [ ! -z "$playerpid" ]; then
+			kill -9 $playerpid
+			sleep 1
+			playerpid=`ps aux | grep "firefox" | grep -v grep | awk '{print $2}'`
+			if [ -z "$playerpid" ]; then
+				echo "    [OK]"
+			else
+				echo -n "[FAILED]"
+				echo "	(could not kill player)"
+				exit 1
+			fi
+		else
+			echo "    [OK]"
+		fi
+
+		sleep 1
+
+		gnomemplayerpid=`ps aux | grep "gnome-mplayer" | grep -v grep | awk '{print $2}'`
+
+		if [ ! -z "$gnomemplayerpid" ]; then
+			echo -n "Killing gnome-mplayer                  "
+			kill -9 $gnomemplayerpid
+			sleep 2
+			gnomemplayerpid=`ps aux | grep "gnome-mplayer" | grep -v grep | awk '{print $2}'`
+			if [ -z "$gnomemplayerpid" ]; then
+				echo "     [OK]"
+			else
+				echo -n "[FAILED]"
+				exit 1
+			fi
+		fi
+
+		mplayerpid=`ps aux | grep "mplayer" | grep -v grep | awk '{print $2}'`
+
+		if [ ! -z "$mplayerpid" ]; then
+			echo -n "Killing mplayer                        "
+			kill -9 $mplayerpid
+			sleep 2
+			mplayerpid=`ps aux | grep "mplayer" | grep -v grep | awk '{print $2}'`
+			if [ -z "$mplayerpid" ]; then
+				echo "     [OK]"
+			else
+				echo -n "[FAILED]"
+				exit 1
+			fi
+		fi
+
+		rm -rf ~/.cache/gnome-mplayer/plugin/*
+
+	fi
+}
+
+function restart () {
+	stop
+	start
+}
+
+case "${1:-''}" in
+  'start')
+                start
+        ;;
+  'stop')
+                stop
+        ;;
+  'restart')
+                restart
+        ;;
+  *)
+        echo "Usage: $0 start|stop|restart"
+        exit 1
+        ;;
+esac

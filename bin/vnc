@@ -1,0 +1,90 @@
+#!/bin/bash
+
+function start () {
+
+	echo -n "Starting service : x11vnc		"
+
+	pid=`ps aux | grep "x11vnc" | grep -v grep | awk '{print $2}'`
+
+	command="/usr/bin/x11vnc \
+					-noxdamage \
+					-ncache 10 \
+					-forever \
+					-usepw \
+					-auth /home/dat/.Xauthority \
+					-rfbauth /home/dat/.vnc/passwd \
+					-display :0 \
+					-loop \
+					-o /dat/local/logs/x11vnc.log"
+
+	if [ ! -z "$pid" ]; then
+		echo -n "[FAILED]"
+		echo "	(x11vnc already running.)"
+	else
+		if [[ "$USER" == "root" ]]
+		then
+			su - dat -c "$command" &
+			echo "    [OK]"
+		else
+    		$command &
+    		echo "    [OK]"
+ 		fi
+	fi
+
+}
+
+function stop () {
+
+	echo -n "Stopping service : x11vnc		"
+
+	pid=`ps aux | grep "x11vnc" | grep -v grep | awk '{print $2}'`
+
+	if [ -z "$pid" ]; then
+		echo -n "[FAILED]"
+		echo "	(x11vnc not running.)"
+	else
+
+		kill $pid
+
+		sleep 3
+
+		pid=`ps aux | grep "x11vnc" | grep -v grep | awk '{print $2}'`
+
+		if [ ! -z "$pid" ]; then
+			kill -9 $pid
+			sleep 3
+			pid=`ps aux | grep "x11vnc" | grep -v grep | awk '{print $2}'`
+			if [ -z "$pid" ]; then
+				echo "    [OK]"
+			else
+				echo -n "[FAILED]"
+				echo "	(could not kill x11vnc)"
+				exit 1
+			fi
+		else
+			echo "    [OK]"
+		fi
+
+	fi
+}
+
+function restart () {
+	stop
+	start
+}
+
+case "${1:-''}" in
+  'start')
+                start
+        ;;
+  'stop')
+                stop
+        ;;
+  'restart')
+                restart
+        ;;
+  *)
+        echo "Usage: $0 start|stop|restart"
+        exit 1
+        ;;
+esac

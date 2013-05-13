@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -e /tmp/dat_deploying.lock ]; then
+	exit 1
+fi
+
+if [ "$(ps ax | grep firefox | grep -vc grep)" -lt 1 ]; then
+	/dat/player/bin/player start
+elif [ "$(ps ax | grep mplayer | grep -vc grep)" -lt 1 ]; then
+	/dat/player/bin/player restart
+elif [ "$(ps ax | grep gnome-mplayer | grep -vc grep)" -lt 2 ]; then
+	sleep 5
+	if [ "$(ps ax | grep gnome-mplayer | grep -vc grep)" -lt 2 ]; then
+		/dat/player/bin/player restart
+	fi
+fi

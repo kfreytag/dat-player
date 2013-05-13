@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# Suppress the annoying "$1: unbound variable" error when no option
+# was given
+if [[ (-z $1) || ($1 != "start" && $1 != "stop" && $1 != "restart") ]] ; then
+	echo "Usage: web [start|stop|restart] "
+	exit 1
+fi
+
+# change config and script to match your machine's lighttpd config and lighttpd
+SCRIPT="sudo service lighttpd"
+
+function start()
+{
+	if [[ "$(ps ax | grep lighttpd | grep -v grep | grep -vc bash)" -ge 1 ]]; then
+		# It's already running
+		echo -e "\nLighttpd is already running.\n"
+	else
+		# It needs to be started
+		# Check to see if the config file exists
+		if [ -e $CONFIG ]; then
+			echo -e "\nStarting Lighttpd Server\n"
+			$SCRIPT start
+		else
+			echo -e "\nCannot find Lighttpd config file\n"
+		fi
+	fi
+}
+
+function stop()
+{
+	if [[ "$(ps ax | grep lighttpd | grep -v grep | grep -vc bash)" -eq 0 ]]; then
+		# It's not running
+		echo -e "\nLighttpd is not running.\n"
+	else
+		# It needs to be stopped
+		echo -e "\nStopping Lighttpd Server..."
+		sudo killall -9 lighttpd php-cgi
+		while [[ "$(ps ax | grep lighttpd | grep -v grep | grep -vc bash)" -ge 1 ]]; do
+			## Waiting
+			sleep 1;
+		done
+		echo -e "Stopped.\n"
+	fi
+}
+
+if [ $1 == "start" ]; then
+	start
+elif [ $1 == "stop" ]; then
+	stop
+elif [ $1 == "restart" ]; then
+	stop
+	start
+fi

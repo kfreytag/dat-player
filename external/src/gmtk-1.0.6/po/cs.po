@@ -1,0 +1,101 @@
+# Czech translation of gnome-mplaer.
+# Copyright (C) 2009 gmtk authors
+# This file is distributed under the same license as the gmtk package.
+# Petr Pisar <petr.pisar@atlas.cz>, 2009, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gmtk 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-08 06:47-0700\n"
+"PO-Revision-Date: 2011-05-11 19:07+0000\n"
+"Last-Translator: Konki <pavel.konkol@seznam.cz>\n"
+"Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2011-06-09 16:08+0000\n"
+"X-Generator: Launchpad (build 13175)\n"
+
+#: ../src/gm_audio.c:78 ../src/gm_audio.c:252
+#: ../src/gmtk_output_combo_box.c:148
+msgid "Default"
+msgstr "Výchozí"
+
+#: ../src/gmtk_media_player.c:554 ../src/gmtk_media_player.c:891
+msgid "Frame Dropping"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:568
+msgid "Deinterlace"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:791
+msgid "Loading..."
+msgstr "Načítá se…"
+
+#: ../src/gmtk_media_player.c:918
+msgid "Subtitles Visible"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:921
+msgid "Subtitles Hidden"
+msgstr ""
+
+#: ../src/gmtk_media_player.c:2671
+#, c-format
+msgid "Failed to open %s"
+msgstr "Otevření %s selhalo"
+
+#: ../src/gmtk_media_player.c:2708
+msgid "Compressed SWF format not supported"
+msgstr "Komprimovaný formát SWF není podporován"
+
+#: ../src/gmtk_media_player.c:2736
+msgid "GNOME MPlayer Error"
+msgstr "Chyba GNOME MPlayeru"
+
+#: ../src/gmtk_media_player.c:2799
+#, c-format
+msgid "Cache fill: %2.2f%%"
+msgstr "Naplnění vyrovnávací paměti: %2.2f %%"
+
+#: ../src/gmtk_media_player.c:2945 ../src/gmtk_media_player.c:2946
+#: ../src/gmtk_media_player.c:2995 ../src/gmtk_media_player.c:3027
+#: ../src/gmtk_media_player.c:3028 ../src/gmtk_media_player.c:3060
+#: ../src/gmtk_media_player.c:3092
+msgid "Unknown"
+msgstr "Neznámý"
+
+#: ../src/gmtk_media_player.c:3006
+#, c-format
+msgid "External Subtitle #%i"
+msgstr "Externí titulky #%i"
+
+#: ../src/gmtk_media_player.c:3199
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "Snímek uložen do „%s“"
+
+#: ../src/gmtk_media_player.c:3202 ../src/gmtk_media_player.c:3298
+msgid "GNOME MPlayer Notification"
+msgstr "Upozorněni GNOME MPlayeru"
+
+#: ../src/gmtk_media_player.c:3295
+msgid "MPlayer should be Upgraded to a Newer Version"
+msgstr "MPlayer může být povýšen na novější verzi"
+
+#: ../src/gmtk_media_player.c:3541
+msgid "You might want to consider upgrading mplayer to a newer version\n"
+msgstr "Možná budete chtít zvážit přechod na novější verzi mplayeru\n"
+
+#: ../src/gmtk_media_tracker.c:97 ../src/gmtk_media_tracker.c:101
+#: ../src/gmtk_media_tracker.c:208
+msgid "No Information"
+msgstr "Žádné informace"
+
+#: ../src/gmtk_audio_meter.c:212
+msgid "No Data"
+msgstr ""
